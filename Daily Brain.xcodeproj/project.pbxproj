@@ -1,0 +1,406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB0000000000000000000101 /* DailyBrainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000001 /* DailyBrainApp.swift */; };
+		DB0000000000000000000102 /* BrainWebPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000002 /* BrainWebPanel.swift */; };
+		DB0000000000000000000103 /* BrainLaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000003 /* BrainLaunchScreen.swift */; };
+		DB0000000000000000000104 /* BrainTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000004 /* BrainTheme.swift */; };
+		DB0000000000000000000105 /* BrainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000005 /* BrainModels.swift */; };
+		DB0000000000000000000106 /* BrainIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000006 /* BrainIcons.swift */; };
+		DB0000000000000000000107 /* BrainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000007 /* BrainStore.swift */; };
+		DB0000000000000000000108 /* BrainArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000008 /* BrainArt.swift */; };
+		DB0000000000000000000109 /* GameKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000009 /* GameKit.swift */; };
+		DB0000000000000000000110 /* GameHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000010 /* GameHost.swift */; };
+		DB0000000000000000000111 /* MemoryGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000011 /* MemoryGames.swift */; };
+		DB0000000000000000000112 /* NumberGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000012 /* NumberGames.swift */; };
+		DB0000000000000000000113 /* FocusGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000013 /* FocusGames.swift */; };
+		DB0000000000000000000114 /* ReflexGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000014 /* ReflexGames.swift */; };
+		DB0000000000000000000115 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000015 /* RootView.swift */; };
+		DB0000000000000000000116 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000016 /* TodayView.swift */; };
+		DB0000000000000000000117 /* GamesLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000017 /* GamesLibraryView.swift */; };
+		DB0000000000000000000118 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000018 /* ProfileView.swift */; };
+		DB0000000000000000000119 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000019 /* MoreView.swift */; };
+		DB0000000000000000000120 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000020 /* Assets.xcassets */; };
+		DB0000000000000000000121 /* Art in Resources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000021 /* Art */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DB0000000000000000000001 /* DailyBrainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBrainApp.swift; sourceTree = "<group>"; };
+		DB0000000000000000000002 /* BrainWebPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainWebPanel.swift; sourceTree = "<group>"; };
+		DB0000000000000000000003 /* BrainLaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainLaunchScreen.swift; sourceTree = "<group>"; };
+		DB0000000000000000000004 /* BrainTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainTheme.swift; sourceTree = "<group>"; };
+		DB0000000000000000000005 /* BrainModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainModels.swift; sourceTree = "<group>"; };
+		DB0000000000000000000006 /* BrainIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainIcons.swift; sourceTree = "<group>"; };
+		DB0000000000000000000007 /* BrainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainStore.swift; sourceTree = "<group>"; };
+		DB0000000000000000000008 /* BrainArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainArt.swift; sourceTree = "<group>"; };
+		DB0000000000000000000009 /* GameKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKit.swift; sourceTree = "<group>"; };
+		DB0000000000000000000010 /* GameHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHost.swift; sourceTree = "<group>"; };
+		DB0000000000000000000011 /* MemoryGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGames.swift; sourceTree = "<group>"; };
+		DB0000000000000000000012 /* NumberGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberGames.swift; sourceTree = "<group>"; };
+		DB0000000000000000000013 /* FocusGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusGames.swift; sourceTree = "<group>"; };
+		DB0000000000000000000014 /* ReflexGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflexGames.swift; sourceTree = "<group>"; };
+		DB0000000000000000000015 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		DB0000000000000000000016 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		DB0000000000000000000017 /* GamesLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesLibraryView.swift; sourceTree = "<group>"; };
+		DB0000000000000000000018 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		DB0000000000000000000019 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
+		DB0000000000000000000020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB0000000000000000000021 /* Art */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Art; sourceTree = "<group>"; };
+		DB0000000000000000000022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB0000000000000000000023 /* Daily Brain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Brain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB0000000000000000000201 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB0000000000000000000301 = {
+			isa = PBXGroup;
+			children = (
+				DB0000000000000000000302 /* Daily Brain */,
+				DB0000000000000000000303 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB0000000000000000000302 /* Daily Brain */ = {
+			isa = PBXGroup;
+			children = (
+				DB0000000000000000000001 /* DailyBrainApp.swift */,
+				DB0000000000000000000002 /* BrainWebPanel.swift */,
+				DB0000000000000000000003 /* BrainLaunchScreen.swift */,
+				DB0000000000000000000004 /* BrainTheme.swift */,
+				DB0000000000000000000005 /* BrainModels.swift */,
+				DB0000000000000000000006 /* BrainIcons.swift */,
+				DB0000000000000000000007 /* BrainStore.swift */,
+				DB0000000000000000000008 /* BrainArt.swift */,
+				DB0000000000000000000009 /* GameKit.swift */,
+				DB0000000000000000000010 /* GameHost.swift */,
+				DB0000000000000000000011 /* MemoryGames.swift */,
+				DB0000000000000000000012 /* NumberGames.swift */,
+				DB0000000000000000000013 /* FocusGames.swift */,
+				DB0000000000000000000014 /* ReflexGames.swift */,
+				DB0000000000000000000015 /* RootView.swift */,
+				DB0000000000000000000016 /* TodayView.swift */,
+				DB0000000000000000000017 /* GamesLibraryView.swift */,
+				DB0000000000000000000018 /* ProfileView.swift */,
+				DB0000000000000000000019 /* MoreView.swift */,
+				DB0000000000000000000020 /* Assets.xcassets */,
+				DB0000000000000000000021 /* Art */,
+				DB0000000000000000000022 /* Info.plist */,
+			);
+			path = "Daily Brain";
+			sourceTree = "<group>";
+		};
+		DB0000000000000000000303 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB0000000000000000000023 /* Daily Brain.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB0000000000000000000401 /* Daily Brain */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB0000000000000000000501 /* Build configuration list for PBXNativeTarget "Daily Brain" */;
+			buildPhases = (
+				DB0000000000000000000601 /* Sources */,
+				DB0000000000000000000201 /* Frameworks */,
+				DB0000000000000000000602 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Daily Brain";
+			productName = "Daily Brain";
+			productReference = DB0000000000000000000023 /* Daily Brain.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB0000000000000000000701 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					DB0000000000000000000401 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = DB0000000000000000000502 /* Build configuration list for PBXProject "Daily Brain" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB0000000000000000000301;
+			productRefGroup = DB0000000000000000000303 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB0000000000000000000401 /* Daily Brain */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB0000000000000000000602 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB0000000000000000000120 /* Assets.xcassets in Resources */,
+				DB0000000000000000000121 /* Art in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB0000000000000000000601 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB0000000000000000000101 /* DailyBrainApp.swift in Sources */,
+				DB0000000000000000000102 /* BrainWebPanel.swift in Sources */,
+				DB0000000000000000000103 /* BrainLaunchScreen.swift in Sources */,
+				DB0000000000000000000104 /* BrainTheme.swift in Sources */,
+				DB0000000000000000000105 /* BrainModels.swift in Sources */,
+				DB0000000000000000000106 /* BrainIcons.swift in Sources */,
+				DB0000000000000000000107 /* BrainStore.swift in Sources */,
+				DB0000000000000000000108 /* BrainArt.swift in Sources */,
+				DB0000000000000000000109 /* GameKit.swift in Sources */,
+				DB0000000000000000000110 /* GameHost.swift in Sources */,
+				DB0000000000000000000111 /* MemoryGames.swift in Sources */,
+				DB0000000000000000000112 /* NumberGames.swift in Sources */,
+				DB0000000000000000000113 /* FocusGames.swift in Sources */,
+				DB0000000000000000000114 /* ReflexGames.swift in Sources */,
+				DB0000000000000000000115 /* RootView.swift in Sources */,
+				DB0000000000000000000116 /* TodayView.swift in Sources */,
+				DB0000000000000000000117 /* GamesLibraryView.swift in Sources */,
+				DB0000000000000000000118 /* ProfileView.swift in Sources */,
+				DB0000000000000000000119 /* MoreView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DB0000000000000000000801 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB0000000000000000000802 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		DB0000000000000000000803 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Daily Brain/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dailybrain.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		DB0000000000000000000804 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Daily Brain/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dailybrain.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB0000000000000000000501 /* Build configuration list for PBXNativeTarget "Daily Brain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB0000000000000000000803 /* Debug */,
+				DB0000000000000000000804 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB0000000000000000000502 /* Build configuration list for PBXProject "Daily Brain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB0000000000000000000801 /* Debug */,
+				DB0000000000000000000802 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB0000000000000000000701 /* Project object */;
+}
