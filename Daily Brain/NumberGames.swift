@@ -307,7 +307,7 @@ struct ChangeMakerGame: View {
                         ZStack {
                             Circle().fill(BrainTheme.goldSoft).frame(height: 76)
                             Circle().stroke(BrainTheme.gold, lineWidth: 3).frame(height: 76)
-                            Text("+\(coin)").font(.system(size: 24, weight: .heavy, design: .rounded)).foregroundColor(BrainTheme.primaryDark)
+                            Text("+\(coin)").font(.system(size: 24, weight: .heavy, design: .rounded)).foregroundColor(BrainTheme.gold)
                         }
                         .frame(maxWidth: .infinity)
                     }

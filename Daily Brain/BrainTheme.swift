@@ -1,27 +1,34 @@
 import SwiftUI
 
 enum BrainTheme {
-    // Base surfaces
-    static let background = Color(red: 0.949, green: 0.957, blue: 0.984)
-    static let card = Color.white
-    static let ink = Color(red: 0.121, green: 0.137, blue: 0.243)
-    static let subtle = Color(red: 0.451, green: 0.478, blue: 0.573)
-    static let line = Color(red: 0.886, green: 0.898, blue: 0.941)
+    // Base surfaces — deep midnight indigo, fixed dark-luxe appearance.
+    static let background = Color(red: 0.051, green: 0.055, blue: 0.114)
+    static let backgroundDeep = Color(red: 0.031, green: 0.033, blue: 0.075)
+    static let card = Color(red: 1.0, green: 1.0, blue: 1.0).opacity(0.055)
+    static let cardStroke = Color.white.opacity(0.10)
+    static let ink = Color(red: 0.933, green: 0.937, blue: 0.976)
+    static let subtle = Color(red: 0.596, green: 0.616, blue: 0.741)
+    static let line = Color.white.opacity(0.12)
 
-    // Brand accents
-    static let primary = Color(red: 0.396, green: 0.310, blue: 0.902)     // indigo-violet
-    static let primaryDark = Color(red: 0.278, green: 0.196, blue: 0.706)
-    static let primarySoft = Color(red: 0.898, green: 0.886, blue: 0.988)
-    static let gold = Color(red: 0.976, green: 0.729, blue: 0.243)
-    static let goldSoft = Color(red: 0.996, green: 0.933, blue: 0.808)
+    // Brand accents — brightened for the dark base.
+    static let primary = Color(red: 0.545, green: 0.463, blue: 1.0)      // luminous violet
+    static let primaryDark = Color(red: 0.337, green: 0.255, blue: 0.796)
+    static let primarySoft = Color(red: 0.545, green: 0.463, blue: 1.0).opacity(0.18)
+    static let gold = Color(red: 0.984, green: 0.760, blue: 0.310)
+    static let goldSoft = Color(red: 0.984, green: 0.760, blue: 0.310).opacity(0.16)
 
     static let heroGradient = LinearGradient(
         gradient: Gradient(colors: [primary, primaryDark]),
         startPoint: .topLeading, endPoint: .bottomTrailing
     )
 
+    /// Full-screen base gradient behind every screen.
+    static let midnightGradient = LinearGradient(
+        gradient: Gradient(colors: [background, backgroundDeep]),
+        startPoint: .top, endPoint: .bottom
+    )
+
     static func level(forXP xp: Int) -> Int {
-        // Smooth curve: each level costs a bit more.
         var lvl = 1
         var need = 120
         var remaining = xp
@@ -46,22 +53,44 @@ enum BrainTheme {
     }
 }
 
+/// Glass card: translucent fill, hairline stroke, deep shadow.
 struct BrainCardStyle: ViewModifier {
     var padding: CGFloat = 16
-    var radius: CGFloat = 20
+    var radius: CGFloat = 22
     func body(content: Content) -> some View {
         content
             .padding(padding)
             .background(
                 RoundedRectangle(cornerRadius: radius, style: .continuous)
                     .fill(BrainTheme.card)
-                    .shadow(color: BrainTheme.ink.opacity(0.06), radius: 12, x: 0, y: 5)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: radius, style: .continuous)
+                            .strokeBorder(
+                                LinearGradient(colors: [Color.white.opacity(0.16), Color.white.opacity(0.04)],
+                                               startPoint: .topLeading, endPoint: .bottomTrailing),
+                                lineWidth: 1)
+                    )
+                    .shadow(color: Color.black.opacity(0.35), radius: 14, x: 0, y: 7)
             )
     }
 }
 
 extension View {
-    func brainCard(padding: CGFloat = 16, radius: CGFloat = 20) -> some View {
+    func brainCard(padding: CGFloat = 16, radius: CGFloat = 22) -> some View {
         modifier(BrainCardStyle(padding: padding, radius: radius))
+    }
+
+    /// Neon glow behind an accent element.
+    func luxeGlow(_ color: Color, radius: CGFloat = 14, opacity: Double = 0.55) -> some View {
+        shadow(color: color.opacity(opacity), radius: radius, x: 0, y: 0)
+    }
+}
+
+/// Springy press feedback for cards and buttons.
+struct PressableScaleStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.965 : 1)
+            .animation(.spring(response: 0.28, dampingFraction: 0.7), value: configuration.isPressed)
     }
 }

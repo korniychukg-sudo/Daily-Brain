@@ -44,7 +44,7 @@ struct MoreView: View {
             .padding(16)
             .padding(.bottom, 10)
         }
-        .background(BrainTheme.background.ignoresSafeArea())
+        .background(LuxeScreenBackground(tint: BrainDomain.focus.color))
         .navigationBarHidden(true)
         .sheet(isPresented: $showPrivacy) {
             BrainWebPanel(urlString: privacyURL)

@@ -17,6 +17,14 @@ final class BrainStore: ObservableObject {
     @Published var soundHint: Bool = true   // stored preference (visual hints)
     @Published var lastCompletedDay: String = ""
 
+    // Lifetime engagement stats & awards
+    @Published var lifetimeGames: Int = 0
+    @Published var lifetimeThreeStars: Int = 0
+    @Published var activity: [String: Int] = [:]        // day stamp -> games played
+    @Published var unlockedAwards: Set<String> = []
+    @Published var pendingAwards: [String] = []          // freshly unlocked, awaiting display
+    @Published var onboardingSeen: Bool = false
+
     private let key = "dailybrain.state.v1"
 
     init() {
@@ -98,12 +106,57 @@ final class BrainStore: ObservableObject {
         }
         bests[outcome.kind.rawValue] = best
 
+        // Lifetime stats
+        lifetimeGames += 1
+        if outcome.score >= 85 { lifetimeThreeStars += 1 }
+        activity[todayStamp(), default: 0] += 1
+        pruneActivity()
+
         if partOfDaily {
             completedToday.insert(outcome.kind.rawValue)
             todayScores[outcome.kind.rawValue] = outcome.score
             if dailyComplete { finalizeDaily() }
         }
+        checkAwards()
         save()
+    }
+
+    private func pruneActivity() {
+        guard activity.count > 40 else { return }
+        let sortedKeys = activity.keys.sorted(by: >)   // stamps sort lexicographically
+        for k in sortedKeys.dropFirst(40) { activity.removeValue(forKey: k) }
+    }
+
+    /// Evaluate the award catalog; queue anything newly unlocked.
+    private func checkAwards() {
+        for award in AwardCatalog.all where !unlockedAwards.contains(award.id) {
+            if award.isUnlocked(self) {
+                unlockedAwards.insert(award.id)
+                pendingAwards.append(award.id)
+            }
+        }
+    }
+
+    /// Pop all freshly unlocked awards for display.
+    func drainPendingAwards() -> [BrainAward] {
+        let out = pendingAwards.compactMap { AwardCatalog.byID($0) }
+        if !pendingAwards.isEmpty { pendingAwards = []; save() }
+        return out
+    }
+
+    /// Games played on each of the last 7 days (oldest first).
+    func weeklyActivity() -> [(label: String, count: Int)] {
+        var out: [(String, Int)] = []
+        let cal = Calendar.current
+        let dayFmt = DateFormatter()
+        dayFmt.dateFormat = "EEEEE"   // single-letter weekday
+        dayFmt.locale = Locale(identifier: "en_US_POSIX")
+        for offset in stride(from: 6, through: 0, by: -1) {
+            let date = cal.date(byAdding: .day, value: -offset, to: Date()) ?? Date()
+            let stamp = BrainStore.dayFmt.string(from: date)
+            out.append((dayFmt.string(from: date), activity[stamp] ?? 0))
+        }
+        return out
     }
 
     private func finalizeDaily() {
@@ -168,13 +221,23 @@ final class BrainStore: ObservableObject {
         var todayScores: [String: Int]
         var lastCompletedDay: String
         var soundHint: Bool
+        // v2 additions — optional so v1 saves still decode.
+        var lifetimeGames: Int?
+        var lifetimeThreeStars: Int?
+        var activity: [String: Int]?
+        var unlockedAwards: [String]?
+        var pendingAwards: [String]?
+        var onboardingSeen: Bool?
     }
 
     private func save() {
         let p = Persisted(profile: profile, totalXP: totalXP, streak: streak, bestStreak: bestStreak,
                           history: history, bests: bests, planDay: planDay, todayPlan: todayPlan,
                           completedToday: Array(completedToday), todayScores: todayScores,
-                          lastCompletedDay: lastCompletedDay, soundHint: soundHint)
+                          lastCompletedDay: lastCompletedDay, soundHint: soundHint,
+                          lifetimeGames: lifetimeGames, lifetimeThreeStars: lifetimeThreeStars,
+                          activity: activity, unlockedAwards: Array(unlockedAwards),
+                          pendingAwards: pendingAwards, onboardingSeen: onboardingSeen)
         if let data = try? JSONEncoder().encode(p) {
             UserDefaults.standard.set(data, forKey: key)
         }
@@ -195,6 +258,12 @@ final class BrainStore: ObservableObject {
         todayScores = p.todayScores
         lastCompletedDay = p.lastCompletedDay
         soundHint = p.soundHint
+        lifetimeGames = p.lifetimeGames ?? bests.values.reduce(0) { $0 + $1.plays }
+        lifetimeThreeStars = p.lifetimeThreeStars ?? 0
+        activity = p.activity ?? [:]
+        unlockedAwards = Set(p.unlockedAwards ?? [])
+        pendingAwards = p.pendingAwards ?? []
+        onboardingSeen = p.onboardingSeen ?? false
     }
 
     func persist() { save() }
@@ -203,7 +272,14 @@ final class BrainStore: ObservableObject {
         profile = SkillProfile(); totalXP = 0; streak = 0; bestStreak = 0
         history = []; bests = [:]; completedToday = []; todayScores = [:]
         lastCompletedDay = ""; planDay = ""
+        lifetimeGames = 0; lifetimeThreeStars = 0; activity = [:]
+        unlockedAwards = []; pendingAwards = []
         refreshPlanIfNeeded()
+        save()
+    }
+
+    func markOnboardingSeen() {
+        onboardingSeen = true
         save()
     }
 }

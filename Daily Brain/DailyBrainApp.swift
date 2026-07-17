@@ -16,10 +16,17 @@ struct DailyBrainApp: App {
                         BrainWebPanel(urlString: brainSourceLink)
                             .edgesIgnoringSafeArea(.bottom)
                             .background(Color.black.ignoresSafeArea())
+                    } else if !store.onboardingSeen {
+                        OnboardingView {
+                            withAnimation(.easeInOut(duration: 0.35)) {
+                                store.markOnboardingSeen()
+                            }
+                        }
+                        .preferredColorScheme(.dark)
                     } else {
                         RootView()
                             .environmentObject(store)
-                            .preferredColorScheme(.light)
+                            .preferredColorScheme(.dark)
                     }
                 } else {
                     BrainLaunchScreen()

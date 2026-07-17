@@ -84,8 +84,11 @@ struct OptionButton: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 22)
                 .background(RoundedRectangle(cornerRadius: 18, style: .continuous).fill(fill)
-                    .shadow(color: BrainTheme.ink.opacity(0.06), radius: 8, y: 3))
+                    .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous)
+                        .strokeBorder(BrainTheme.cardStroke, lineWidth: 1))
+                    .shadow(color: Color.black.opacity(0.25), radius: 8, y: 4))
         }
+        .buttonStyle(PressableScaleStyle())
     }
 }
 

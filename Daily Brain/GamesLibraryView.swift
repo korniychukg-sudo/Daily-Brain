@@ -15,7 +15,7 @@ struct GamesLibraryView: View {
             .padding(16)
             .padding(.bottom, 10)
         }
-        .background(BrainTheme.background.ignoresSafeArea())
+        .background(LuxeScreenBackground(tint: BrainDomain.numbers.color))
         .navigationBarHidden(true)
         .fullScreenCover(item: $activeGame) { kind in
             GameHost(kind: kind, partOfDaily: false) { _ in activeGame = nil }
@@ -97,9 +97,11 @@ struct GamesLibraryView: View {
                 .padding(.vertical, 10)
             }
             .background(RoundedRectangle(cornerRadius: 16, style: .continuous).fill(BrainTheme.card)
-                .shadow(color: BrainTheme.ink.opacity(0.06), radius: 8, y: 3))
+                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .strokeBorder(BrainTheme.cardStroke, lineWidth: 1))
+                .shadow(color: Color.black.opacity(0.30), radius: 10, y: 5))
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressableScaleStyle())
     }
 }
 

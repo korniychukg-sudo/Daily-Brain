@@ -34,9 +34,11 @@ struct RootView: View {
         .padding(.top, 10)
         .padding(.bottom, 6)
         .background(
-            BrainTheme.card
-                .shadow(color: BrainTheme.ink.opacity(0.06), radius: 10, y: -2)
-                .edgesIgnoringSafeArea(.bottom)
+            ZStack(alignment: .top) {
+                BrainTheme.backgroundDeep.opacity(0.96)
+                Rectangle().fill(BrainTheme.line).frame(height: 1)
+            }
+            .edgesIgnoringSafeArea(.bottom)
         )
     }
 
@@ -47,11 +49,13 @@ struct RootView: View {
         } label: {
             VStack(spacing: 5) {
                 BrainIcon(glyph: glyph, size: 24,
-                          color: tab == index ? BrainTheme.primary : BrainTheme.subtle.opacity(0.7),
+                          color: tab == index ? BrainTheme.gold : BrainTheme.subtle.opacity(0.7),
                           weight: 2.2)
+                    .luxeGlow(tab == index ? BrainTheme.gold : .clear, radius: 9,
+                              opacity: tab == index ? 0.5 : 0)
                 Text(label)
                     .font(.system(size: 11, weight: .semibold, design: .rounded))
-                    .foregroundColor(tab == index ? BrainTheme.primary : BrainTheme.subtle.opacity(0.8))
+                    .foregroundColor(tab == index ? BrainTheme.gold : BrainTheme.subtle.opacity(0.8))
             }
             .frame(maxWidth: .infinity)
         }

@@ -17,13 +17,33 @@ struct GameHost: View {
 
     var body: some View {
         ZStack {
-            BrainTheme.background.ignoresSafeArea()
+            backdrop
             VStack(spacing: 0) {
                 header
                 content
             }
         }
         .onDisappear { readyTimer?.invalidate() }
+    }
+
+    /// Ambient domain art behind the whole game flow, dimmed for readability.
+    private var backdrop: some View {
+        ZStack {
+            BrainTheme.midnightGradient
+            if let ui = BrainArtLoader.image(named: kind.domain.backdropAsset) {
+                GeometryReader { geo in
+                    Image(uiImage: ui)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        .clipped()
+                        .opacity(0.55)
+                }
+                Color.black.opacity(0.30)
+            }
+            GrainOverlay(opacity: 0.28)
+        }
+        .ignoresSafeArea()
     }
 
     // MARK: Header
@@ -33,16 +53,18 @@ struct GameHost: View {
             Button { finishAbandon() } label: {
                 ZStack {
                     Circle().fill(BrainTheme.card).frame(width: 38, height: 38)
-                        .shadow(color: BrainTheme.ink.opacity(0.06), radius: 5, y: 2)
+                        .overlay(Circle().strokeBorder(BrainTheme.cardStroke, lineWidth: 1))
                     BrainIcon(glyph: .close, size: 18, color: BrainTheme.ink, weight: 2)
                 }
             }
+            .buttonStyle(PressableScaleStyle())
             Spacer()
             Text(kind.title)
                 .font(.system(size: 17, weight: .bold, design: .rounded))
                 .foregroundColor(BrainTheme.ink)
             Spacer()
             Circle().fill(kind.domain.color).frame(width: 12, height: 12)
+                .luxeGlow(kind.domain.color, radius: 8, opacity: 0.8)
                 .padding(.trailing, 13)
         }
         .padding(.horizontal, 16)
@@ -69,7 +91,10 @@ struct GameHost: View {
         ScrollView {
             VStack(spacing: 18) {
                 GameArtView(kind: kind, cornerRadius: 24)
-                    .frame(height: 180)
+                    .frame(height: 190)
+                    .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .strokeBorder(BrainTheme.cardStroke, lineWidth: 1))
+                    .luxeGlow(kind.domain.color, radius: 24, opacity: 0.35)
                     .padding(.top, 6)
 
                 HStack(spacing: 8) {
@@ -116,7 +141,9 @@ struct GameHost: View {
                         RoundedRectangle(cornerRadius: 18, style: .continuous)
                             .fill(BrainTheme.heroGradient)
                     )
+                    .luxeGlow(BrainTheme.primary, radius: 16, opacity: 0.45)
                 }
+                .buttonStyle(PressableScaleStyle())
                 .padding(.top, 6)
                 .padding(.horizontal, 8)
             }
@@ -131,7 +158,9 @@ struct GameHost: View {
         }
         .frame(minWidth: 66)
         .padding(.vertical, 10)
-        .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(BrainTheme.card))
+        .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(BrainTheme.card)
+            .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .strokeBorder(BrainTheme.cardStroke, lineWidth: 1)))
     }
 
     private var readyView: some View {
@@ -215,7 +244,10 @@ private struct ResultView: View {
     let kind: GameKind
     let outcome: GameOutcome
     var onDone: () -> Void
+    @EnvironmentObject var store: BrainStore
     @State private var appear = false
+    @State private var confetti = false
+    @State private var newAwards: [BrainAward] = []
 
     private var stars: Int {
         if outcome.score >= 85 { return 3 }
@@ -225,62 +257,102 @@ private struct ResultView: View {
     }
 
     var body: some View {
-        VStack(spacing: 22) {
-            Spacer()
-            ZStack {
-                Circle().fill(kind.domain.colorSoft).frame(width: 150, height: 150)
-                    .scaleEffect(appear ? 1 : 0.6)
-                VStack(spacing: 2) {
-                    Text("\(outcome.score)")
-                        .font(.system(size: 54, weight: .heavy, design: .rounded))
-                        .foregroundColor(kind.domain.color)
-                    Text("score").font(.system(size: 13, weight: .semibold, design: .rounded))
+        ZStack {
+            ScrollView {
+                VStack(spacing: 22) {
+                    ZStack {
+                        Circle().fill(kind.domain.colorSoft).frame(width: 158, height: 158)
+                            .overlay(Circle().strokeBorder(kind.domain.color.opacity(0.5), lineWidth: 1.5))
+                            .luxeGlow(kind.domain.color, radius: 30, opacity: 0.45)
+                            .scaleEffect(appear ? 1 : 0.6)
+                        VStack(spacing: 2) {
+                            CountUpText(target: outcome.score,
+                                        font: .system(size: 56, weight: .heavy, design: .rounded),
+                                        color: kind.domain.color)
+                            Text("score").font(.system(size: 13, weight: .semibold, design: .rounded))
+                                .foregroundColor(BrainTheme.subtle)
+                        }
+                    }
+                    .padding(.top, 36)
+
+                    HStack(spacing: 12) {
+                        ForEach(0..<3, id: \.self) { i in
+                            BrainIcon(glyph: .star, size: 32,
+                                      color: i < stars ? BrainTheme.gold : BrainTheme.line, weight: 2)
+                                .luxeGlow(i < stars ? BrainTheme.gold : .clear, radius: 10,
+                                          opacity: i < stars ? 0.6 : 0)
+                                .scaleEffect(appear ? 1 : 0.3)
+                                .animation(.spring(response: 0.45, dampingFraction: 0.55).delay(0.25 + 0.14 * Double(i)), value: appear)
+                        }
+                    }
+
+                    VStack(spacing: 6) {
+                        Text(outcome.statText)
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .foregroundColor(BrainTheme.ink)
+                        HStack(spacing: 6) {
+                            BrainIcon(glyph: .spark, size: 16, color: BrainTheme.gold, weight: 2)
+                            Text("+\(outcome.xp) XP")
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
+                                .foregroundColor(BrainTheme.gold)
+                        }
+                    }
+
+                    Text(feedback)
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
                         .foregroundColor(BrainTheme.subtle)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 30)
+
+                    ForEach(newAwards) { award in
+                        HStack(spacing: 14) {
+                            AwardBadgeView(award: award, unlocked: true, size: 56)
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text("Award unlocked")
+                                    .font(.system(size: 12, weight: .heavy, design: .rounded))
+                                    .foregroundColor(BrainTheme.gold)
+                                    .tracking(0.8)
+                                Text(award.title)
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundColor(BrainTheme.ink)
+                                Text(award.blurb)
+                                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                                    .foregroundColor(BrainTheme.subtle)
+                            }
+                            Spacer()
+                        }
+                        .brainCard(padding: 14)
+                        .padding(.horizontal, 24)
+                        .transition(.scale.combined(with: .opacity))
+                    }
+
+                    Button(action: onDone) {
+                        Text("Continue")
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(RoundedRectangle(cornerRadius: 18, style: .continuous).fill(BrainTheme.heroGradient))
+                            .luxeGlow(BrainTheme.primary, radius: 16, opacity: 0.45)
+                    }
+                    .buttonStyle(PressableScaleStyle())
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 20)
                 }
             }
-
-            HStack(spacing: 10) {
-                ForEach(0..<3, id: \.self) { i in
-                    BrainIcon(glyph: .star, size: 30,
-                              color: i < stars ? BrainTheme.gold : BrainTheme.line, weight: 2)
-                        .scaleEffect(appear ? 1 : 0.4)
-                        .animation(.spring(response: 0.4, dampingFraction: 0.6).delay(0.1 * Double(i)), value: appear)
-                }
-            }
-
-            VStack(spacing: 6) {
-                Text(outcome.statText)
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundColor(BrainTheme.ink)
-                HStack(spacing: 6) {
-                    BrainIcon(glyph: .spark, size: 16, color: BrainTheme.gold, weight: 2)
-                    Text("+\(outcome.xp) XP")
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundColor(BrainTheme.gold)
-                }
-            }
-
-            Text(feedback)
-                .font(.system(size: 15, weight: .medium, design: .rounded))
-                .foregroundColor(BrainTheme.subtle)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 30)
-
-            Spacer()
-
-            Button(action: onDone) {
-                Text("Continue")
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(RoundedRectangle(cornerRadius: 18, style: .continuous).fill(BrainTheme.heroGradient))
-            }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 20)
+            BrainConfetti(trigger: confetti)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onAppear { withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) { appear = true } }
+        .onAppear {
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) { appear = true }
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.5)) {
+                newAwards = store.drainPendingAwards()
+            }
+            if stars == 3 {
+                BrainHaptics.success()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { confetti = true }
+            }
+        }
     }
 
     private var feedback: String {

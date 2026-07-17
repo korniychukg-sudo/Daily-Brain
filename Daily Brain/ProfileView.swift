@@ -66,14 +66,127 @@ struct ProfileView: View {
                 header
                 radarCard
                 domainBars
+                weeklyCard
+                awardsSection
+                lifetimeCard
                 if !store.history.isEmpty { historySection }
                 bestsSection
             }
             .padding(16)
             .padding(.bottom, 10)
         }
-        .background(BrainTheme.background.ignoresSafeArea())
+        .background(LuxeScreenBackground(tint: BrainTheme.primary))
         .navigationBarHidden(true)
+    }
+
+    // MARK: Weekly activity
+
+    private var weeklyCard: some View {
+        let days = store.weeklyActivity()
+        let maxCount = max(1, days.map { $0.count }.max() ?? 1)
+        return VStack(alignment: .leading, spacing: 14) {
+            Text("This Week")
+                .font(.system(size: 16, weight: .bold, design: .rounded)).foregroundColor(BrainTheme.ink)
+            HStack(alignment: .bottom, spacing: 10) {
+                ForEach(days.indices, id: \.self) { i in
+                    let day = days[i]
+                    VStack(spacing: 6) {
+                        Text(day.count > 0 ? "\(day.count)" : "")
+                            .font(.system(size: 11, weight: .bold, design: .rounded))
+                            .foregroundColor(BrainTheme.gold)
+                        ZStack(alignment: .bottom) {
+                            Capsule().fill(BrainTheme.card).frame(height: 74)
+                                .overlay(Capsule().strokeBorder(BrainTheme.cardStroke, lineWidth: 1))
+                            if day.count > 0 {
+                                Capsule().fill(
+                                    LinearGradient(colors: [BrainTheme.gold, BrainTheme.primary],
+                                                   startPoint: .top, endPoint: .bottom))
+                                    .frame(height: max(12, 74 * CGFloat(day.count) / CGFloat(maxCount)))
+                                    .luxeGlow(BrainTheme.gold, radius: 6, opacity: 0.35)
+                            }
+                        }
+                        .frame(height: 74)
+                        Text(day.label)
+                            .font(.system(size: 11, weight: .semibold, design: .rounded))
+                            .foregroundColor(i == days.count - 1 ? BrainTheme.gold : BrainTheme.subtle)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+        }
+        .brainCard()
+    }
+
+    // MARK: Awards strip
+
+    private var awardsSection: some View {
+        let unlockedCount = AwardCatalog.all.filter { store.unlockedAwards.contains($0.id) }.count
+        return VStack(alignment: .leading, spacing: 14) {
+            HStack {
+                Text("Awards")
+                    .font(.system(size: 16, weight: .bold, design: .rounded)).foregroundColor(BrainTheme.ink)
+                Spacer()
+                NavigationLink {
+                    AwardsView().environmentObject(store)
+                } label: {
+                    HStack(spacing: 4) {
+                        Text("\(unlockedCount)/\(AwardCatalog.all.count) · See all")
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundColor(BrainTheme.gold)
+                        BrainIcon(glyph: .chevronRight, size: 15, color: BrainTheme.gold, weight: 2)
+                    }
+                }
+            }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 16) {
+                    let sorted = AwardCatalog.all.sorted {
+                        (store.unlockedAwards.contains($0.id) ? 0 : 1) < (store.unlockedAwards.contains($1.id) ? 0 : 1)
+                    }
+                    ForEach(sorted.prefix(8)) { award in
+                        AwardBadgeView(award: award,
+                                       unlocked: store.unlockedAwards.contains(award.id),
+                                       size: 66)
+                    }
+                }
+                .padding(.vertical, 2)
+            }
+        }
+        .brainCard()
+    }
+
+    // MARK: Lifetime stats
+
+    private var lifetimeCard: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("All Time")
+                .font(.system(size: 16, weight: .bold, design: .rounded)).foregroundColor(BrainTheme.ink)
+            HStack(spacing: 12) {
+                lifetimeTile(value: "\(store.lifetimeGames)", label: "Games", color: BrainTheme.primary)
+                lifetimeTile(value: "\(store.lifetimeThreeStars)", label: "3-star runs", color: BrainTheme.gold)
+            }
+            HStack(spacing: 12) {
+                lifetimeTile(value: "\(store.history.count)", label: "Sets done", color: BrainDomain.numbers.color)
+                lifetimeTile(value: "\(store.bestStreak)", label: "Best streak", color: BrainDomain.reflex.color)
+            }
+        }
+        .brainCard()
+    }
+
+    private func lifetimeTile(value: String, label: String, color: Color) -> some View {
+        VStack(spacing: 4) {
+            Text(value)
+                .font(.system(size: 24, weight: .heavy, design: .rounded))
+                .foregroundColor(color)
+            Text(label)
+                .font(.system(size: 12, weight: .semibold, design: .rounded))
+                .foregroundColor(BrainTheme.subtle)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 14)
+        .background(RoundedRectangle(cornerRadius: 14, style: .continuous)
+            .fill(color.opacity(0.10))
+            .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .strokeBorder(color.opacity(0.30), lineWidth: 1)))
     }
 
     private var header: some View {

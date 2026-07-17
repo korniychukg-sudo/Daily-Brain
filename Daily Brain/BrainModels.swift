@@ -30,14 +30,17 @@ enum BrainDomain: String, CaseIterable, Codable, Identifiable {
 
     var color: Color {
         switch self {
-        case .memory:  return Color(red: 0.396, green: 0.310, blue: 0.902) // violet
-        case .numbers: return Color(red: 0.043, green: 0.588, blue: 0.533) // teal
-        case .focus:   return Color(red: 0.921, green: 0.451, blue: 0.176) // orange
-        case .reflex:  return Color(red: 0.902, green: 0.310, blue: 0.478) // rose
+        case .memory:  return Color(red: 0.580, green: 0.502, blue: 1.0)   // luminous violet
+        case .numbers: return Color(red: 0.196, green: 0.812, blue: 0.722) // neon teal
+        case .focus:   return Color(red: 1.0, green: 0.596, blue: 0.267)   // amber orange
+        case .reflex:  return Color(red: 1.0, green: 0.427, blue: 0.588)   // neon rose
         }
     }
 
-    var colorSoft: Color { color.opacity(0.16) }
+    var colorSoft: Color { color.opacity(0.18) }
+
+    /// Ambient backdrop asset shown behind live game screens.
+    var backdropAsset: String { "ambient_\(rawValue)" }
 
     /// Banner asset base name (art pack).
     var bannerAsset: String { "banner_\(rawValue)" }

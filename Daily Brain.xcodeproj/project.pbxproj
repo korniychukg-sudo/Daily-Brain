@@ -28,6 +28,10 @@
 		DB0000000000000000000119 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000019 /* MoreView.swift */; };
 		DB0000000000000000000120 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000020 /* Assets.xcassets */; };
 		DB0000000000000000000121 /* Art in Resources */ = {isa = PBXBuildFile; fileRef = DB0000000000000000000021 /* Art */; };
+		DB000000000000000000010122 /* LuxeUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000000000000000000000024 /* LuxeUI.swift */; };
+		DB000000000000000000010123 /* Awards.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000000000000000000000025 /* Awards.swift */; };
+		DB000000000000000000010124 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000000000000000000000026 /* OnboardingView.swift */; };
+		DB000000000000000000010125 /* DailySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000000000000000000000027 /* DailySummaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +57,10 @@
 		DB0000000000000000000020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB0000000000000000000021 /* Art */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Art; sourceTree = "<group>"; };
 		DB0000000000000000000022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB000000000000000000000024 /* LuxeUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuxeUI.swift; sourceTree = "<group>"; };
+		DB000000000000000000000025 /* Awards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Awards.swift; sourceTree = "<group>"; };
+		DB000000000000000000000026 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		DB000000000000000000000027 /* DailySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryView.swift; sourceTree = "<group>"; };
 		DB0000000000000000000023 /* Daily Brain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Brain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,6 +105,10 @@
 				DB0000000000000000000017 /* GamesLibraryView.swift */,
 				DB0000000000000000000018 /* ProfileView.swift */,
 				DB0000000000000000000019 /* MoreView.swift */,
+				DB000000000000000000000024 /* LuxeUI.swift */,
+				DB000000000000000000000025 /* Awards.swift */,
+				DB000000000000000000000026 /* OnboardingView.swift */,
+				DB000000000000000000000027 /* DailySummaryView.swift */,
 				DB0000000000000000000020 /* Assets.xcassets */,
 				DB0000000000000000000021 /* Art */,
 				DB0000000000000000000022 /* Info.plist */,
@@ -201,6 +213,10 @@
 				DB0000000000000000000117 /* GamesLibraryView.swift in Sources */,
 				DB0000000000000000000118 /* ProfileView.swift in Sources */,
 				DB0000000000000000000119 /* MoreView.swift in Sources */,
+				DB000000000000000000010122 /* LuxeUI.swift in Sources */,
+				DB000000000000000000010123 /* Awards.swift in Sources */,
+				DB000000000000000000010124 /* OnboardingView.swift in Sources */,
+				DB000000000000000000010125 /* DailySummaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +343,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -337,7 +353,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dailybrain.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -356,7 +372,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -366,7 +382,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dailybrain.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
