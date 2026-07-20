@@ -30,7 +30,7 @@ struct MoreView: View {
     @EnvironmentObject var store: BrainStore
     @State private var showPrivacy = false
     @State private var showReset = false
-    private let privacyURL = "https://example.com"
+    private let privacyURL = "https://sites.google.com/view/daily-brain/"
 
     var body: some View {
         ScrollView {
